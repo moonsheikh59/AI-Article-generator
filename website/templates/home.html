@@ -1,0 +1,49 @@
+{%extends "base.html "%}
+{% block title%}Home
+{%endblock%}
+
+{% block content %}
+
+<div class="container my-4">
+  <h1 class="font-weight-bold text-center" style="font-size: 24px; color: #310101;">Welcome {{user.fname}}</h1>
+  <div class="row my-4">
+    <div class="col-md-6">
+      <h1 class="font-weight-bold" style="font-size: 24px; color: #333;">AI Article Generator</h1>
+      <textarea class="form-control my-1 p-2" placeholder="Enter the title of your blog"></textarea>
+      <button id="submitBtn" class="btn btn-primary btn-lg my-4 rounded">Get Article</button>
+      <div class="d-flex justify-content-center">
+        <div id="loading-spinner" class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-md-6">   
+      <form method="post">
+        <h1 class="font-weight-bold" style="font-size: 24px; color: #333;">Save Your Article </h1>
+        <textarea name="data" id="data" class="form-control my-1 p-2"></textarea>
+        <br />
+        <div class="align-items-center">
+          <button type="submit" class="btn btn-primary btn-lg my-1 rounded">Save Article</button>
+        </div>
+      </form>
+     
+    </div>
+  </div>
+  <div id="content" class="bg-light w-auto p-2 my-4">
+    <div id="generated-content">
+      Your content will show up here
+    </div>
+  </div>
+  <ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+      {{ note.data }}
+      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </li>
+    {% endfor %}
+  </ul>
+  {%endblock%}
+</div>
