@@ -1,1 +1,1 @@
-OPENAI_KEY = "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"
+OPENAI_KEY = "your open ai key here"
